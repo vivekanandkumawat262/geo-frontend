@@ -1,0 +1,51 @@
+/* Basic responsive navbar styles */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  background: white;
+  box-shadow: 0 1px 6px rgba(16,24,40,0.06);
+}
+
+/* left */
+.nav__brand { display:flex; align-items:center; }
+.nav__logo { height: 44px; width: auto; }
+
+/* middle (desktop nav) */
+.nav__middle { flex: 1; display:flex; justify-content:center; }
+.nav__list {
+  display:flex; gap: 1.25rem; list-style:none; padding:0; margin:0;
+}
+.nav__list a { text-decoration:none; color:#111827; font-weight:500; padding:0.35rem 0.25rem; }
+
+/* right */
+.nav__right { display:flex; gap: 0.75rem; align-items:center; }
+.nav__phone { display:flex; gap:0.5rem; align-items:center; font-size:0.95rem; color:#0f172a; }
+.nav__icon { width:18px; height:18px; object-fit:contain; }
+.nav__profile-img { width:36px; height:36px; border-radius:50%; object-fit:cover; }
+.btn { padding:0.5rem 0.9rem; border-radius:10px; border: none; cursor:pointer; }
+.btn--primary { background:#f6c23e; color:#071133; font-weight:600; }
+
+/* hamburger - hidden on desktop */
+.nav__hamburger { display:none; background:none; border:0; cursor:pointer; padding:8px; }
+.hamburger__bar { display:block; width:22px; height:2px; margin:4px 0; background:#111827; border-radius:2px; }
+
+/* Responsive: collapse nav on small screens */
+@media (max-width: 880px) {
+  .nav__middle { 
+    position: absolute; 
+    left: 0; right: 0; top: 64px; 
+    background:white; 
+    transform: translateY(-8px);
+    padding: 1rem 0; 
+    display:none;
+    box-shadow: 0 10px 30px rgba(2,6,23,0.08);
+    z-index: 50;
+  }
+  .nav__middle.open { display:block; }
+  .nav__list { flex-direction: column; align-items:center; gap: 0.75rem; }
+  .nav__hamburger { display:block; }
+  .nav__right { gap: 0.4rem; }
+}
