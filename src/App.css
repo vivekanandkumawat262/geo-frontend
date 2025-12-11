@@ -1,3 +1,4 @@
+/* nav section */
 /* Basic responsive navbar styles */
 .nav {
   display: flex;
@@ -48,4 +49,327 @@
   .nav__list { flex-direction: column; align-items:center; gap: 0.75rem; }
   .nav__hamburger { display:block; }
   .nav__right { gap: 0.4rem; }
+}
+
+
+
+
+
+/* hero section */
+
+
+/* Hero.css - basic responsive styles */
+.hero {
+  position: relative;
+  background-image: url('/assets/images/hero-bg.jpg'); /* set a hero background in public or import */
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  padding: 5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 64vh;
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(6, 10, 20, 0.45);
+  z-index: 0;
+}
+
+.hero__center {
+  z-index: 2;
+  max-width: 1100px;
+  width: 100%;
+  text-align: left;
+}
+
+.hero__kicker {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.9);
+  display: inline-block;
+  background: rgba(255,255,255,0.08);
+  padding: 6px 12px;
+  border-radius: 999px;
+  margin-bottom: 1rem;
+}
+
+.hero__title {
+  font-size: 2.25rem;
+  line-height: 1.05;
+  margin: 0 0 1rem 0;
+  font-weight: 700;
+  color: white;
+}
+
+.hero__mode {
+  display: inline-flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.mode-btn {
+  background: rgba(255,255,255,0.12);
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.mode-btn.active {
+  background: #f6c23e;
+  color: #071133;
+}
+
+/* search */
+.hero__search {
+  margin-top: 1.75rem;
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  max-width: 720px;
+  align-items: center;
+}
+
+.hero__input {
+  flex: 1;
+  padding: 14px 18px;
+  border-radius: 999px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  background: rgba(255,255,255,0.9); /* contrast for visibility */
+  color: #071133;
+}
+
+.hero__search-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  border-radius: 999px;
+  border: none;
+  background: #071133;
+  cursor: pointer;
+}
+
+/* small screens */
+@media (max-width: 768px) {
+  .hero {
+    padding: 3rem 1rem;
+    min-height: 56vh;
+    text-align: center;
+  }
+  .hero__center { text-align: center; }
+  .hero__title { font-size: 1.75rem; }
+  .hero__search { margin: 1rem auto 0; }
+  .hero__mode { justify-content: center; }
+}
+
+
+
+/* Homes for you section  */
+
+/* HomesForYou.css
+   Styles for the "Homes For You" section and a single card layout.
+   Designed to be responsive and visually similar to modern real-estate UIs.
+*/
+
+/* Section wrapper */
+.homesforyousection {
+  padding: 3.5rem 1rem;
+  background: #f8fafc; /* subtle light background */
+  color: #0f172a;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+/* inner container - center content and limit width */
+.homesforyousection > div {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Heading + paragraph area */
+.headingandpargraph {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.headingandpargraph h2 {
+  font-size: 1.6rem;
+  margin: 0;
+  color: #071133;
+  font-weight: 700;
+}
+
+.headingandpargraph p {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+/* Cards container - grid for multiple cards */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem;
+  align-items: start;
+}
+
+/* Card root */
+.card1 {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(15, 23, 40, 0.06);
+  display: flex;
+  flex-direction: column;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+  cursor: pointer;
+  min-height: 320px;
+}
+
+/* hover lift */
+.card1:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 36px rgba(15, 23, 40, 0.12);
+}
+
+/* Top area - background image container */
+.backgroundimage {
+  position: relative;
+  width: 100%;
+  height: 170px;
+  background-color: #e6eef8; /* fallback color while image loads */
+  background-size: cover;
+  background-position: center;
+  display: block;
+}
+
+/* Example: if you have inline image add via style or set as img in markup */
+/* .backgroundimage img { width:100%; height:100%; object-fit:cover; display:block; } */
+
+/* Badges at top-left of image */
+.topleft1, .topleft2 {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  margin: 0;
+  padding: 6px 10px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  border-radius: 999px;
+  letter-spacing: 0.03em;
+}
+
+/* Stagger badges */
+.topleft1 {
+  background: rgba(255, 255, 255, 0.9);
+  color: #071133;
+  transform: translateY(0);
+  z-index: 30;
+}
+
+.topleft2 {
+  top: 44px;
+  background: #f6c23e;
+  color: #071133;
+  z-index: 29;
+}
+
+/* second row: title + address and price */
+.secondrow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 14px 16px 6px;
+}
+
+.leftone p {
+  margin: 0;
+  color: #071133;
+}
+
+.leftone p:first-child {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.leftone p:last-child {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #64748b;
+  font-size: 0.92rem;
+}
+
+/* small map icon in address */
+.leftone img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  display: inline-block;
+}
+
+/* price block on right */
+.rightone {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #071133;
+  white-space: nowrap;
+}
+
+/* third row: amenities */
+.thirdrow {
+  display: flex;
+  gap: 18px;
+  padding: 8px 16px 18px;
+  border-top: 1px solid #f1f5f9;
+  margin-top: auto;
+  align-items: center;
+}
+
+.thirdrow > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #334155;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+/* icons inside amenities */
+.thirdrow img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  display: inline-block;
+}
+
+/* Responsive tweaks */
+@media (max-width: 900px) {
+  .headingandpargraph { gap: 0.5rem; align-items: flex-start; }
+  .headingandpargraph p { order: 2; margin-top: 6px; }
+  .cards { gap: 0.9rem; }
+  .backgroundimage { height: 150px; }
+}
+
+@media (max-width: 520px) {
+  .homesforyousection { padding: 2rem 0.75rem; }
+  .headingandpargraph h2 { font-size: 1.25rem; }
+  .card1 { min-height: 300px; }
+  .backgroundimage { height: 130px; }
+  .secondrow { padding: 12px; }
+  .thirdrow { gap: 12px; padding: 10px 12px; }
 }
