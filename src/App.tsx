@@ -5,12 +5,10 @@ import profileLogo from "./assets/images/profileLogo.png"
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+ 
   const [open, setOpen] = useState(false);
 
-  function f1() {
-    setCount(count+1)
-  }
+ 
 
   return (
     <>
