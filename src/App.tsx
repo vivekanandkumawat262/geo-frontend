@@ -18,7 +18,7 @@ import bgimageUrl from "./assets/images/bgimage.png";
 /* ---------------------------------------
    HOMES FOR YOU COMPONENT
 ---------------------------------------- */
-import {HomesForYou} from "./components/HomesForYou";
+import {HomesForYou} from "./components/HomesForYou.jsx";
 
 /* ---------------------------------------
    DEMO DATA (Fixing Wrong Paths)
@@ -146,18 +146,10 @@ const demoItems = [
 
 function App() {
   const [open, setOpen] = useState(false);
-  const [mode, setMode] = useState("sale");
+  // const [mode, setMode] = useState("sale");
   const [query, setQuery] = useState("");
 
-  function handleMode(m) {
-    setMode(m);
-  }
-
-  function submit(e) {
-    e.preventDefault();
-    const payload = { mode, query };
-    console.log("Search submitted:", payload);
-  }
+   
 
   return (
     <>
@@ -218,21 +210,23 @@ function App() {
 
             <div className="hero__mode">
               <button
-                className={`mode-btn ${mode === "sale" ? "active" : ""}`}
-                onClick={() => handleMode("sale")}
+                // className={`mode-btn ${mode === "sale" ? "active" : ""}`}
+                // onClick={() => handleMode("sale")}
               >
                 Sale
               </button>
               <button
-                className={`mode-btn ${mode === "rent" ? "active" : ""}`}
-                onClick={() => handleMode("rent")}
+                // className={`mode-btn ${mode === "rent" ? "active" : ""}`}
+                // onClick={() => handleMode("rent")}
               >
                 Rent
               </button>
             </div>
           </div>
 
-          <form className="hero__search" onSubmit={submit}>
+          <form className="hero__search" 
+          // onSubmit={submit}
+          >
             <input
               type="text"
               value={query}
