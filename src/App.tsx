@@ -7,7 +7,7 @@ import "./App.css";
 import logo from "./assets/images/logo.png";
 import phoneLogo from "./assets/images/phonelogo.png";
 import profileLogo from "./assets/images/profileLogo.png";
-import searchlogo from "./assets/images/searchlogo.png";
+// import searchlogo from "./assets/images/searchlogo.png";
 
 import maplogoimage from "./assets/images/maplogo.png";
 import bedlogo from "./assets/images/bedlogo.png";
@@ -147,25 +147,25 @@ const demoItems = [
   // You can add more objects here
 ];
 
-const demoItems2 = [
-  {
-    title: "Skyper Pool Apartment",
-    price: "$280,000",
-    lat: 28.6139,
-    lng: 77.209,
-  },
-  {
-    title: "Luxury City Home",
-    price: "$350,000",
-    lat: 28.7041,
-    lng: 77.1025,
-  },
-];
+// const demoItems2 = [
+//   {
+//     title: "Skyper Pool Apartment",
+//     price: "$280,000",
+//     lat: 28.6139,
+//     lng: 77.209,
+//   },
+//   {
+//     title: "Luxury City Home",
+//     price: "$350,000",
+//     lat: 28.7041,
+//     lng: 77.1025,
+//   },
+// ];
 
 function App() {
   const [open, setOpen] = useState(false);
   // const [mode, setMode] = useState("sale");
-  const [query, setQuery] = useState("");
+  // const [query, setQuery] = useState("");
   const mapRef = useRef<MapViewHandle | null>(null);
   async function handleSearch(payload: { query: string; mode: string }) {
     const { query } = payload;
