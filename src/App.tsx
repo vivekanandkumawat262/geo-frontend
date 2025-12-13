@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "./App.css";
 
 /* ---------------------------------------
@@ -15,11 +15,14 @@ import bathlogo from "./assets/images/bathlogo.png";
 import sqftlogo from "./assets/images/sqftlogo.png";
 import bgimageUrl from "./assets/images/bgimage.png";
 
+import Hero from "./components/Hero.jsx";
+
 /* ---------------------------------------
    HOMES FOR YOU COMPONENT
 ---------------------------------------- */
-import {HomesForYou} from "./components/HomesForYou.jsx";
 
+import { HomesForYou } from "./components/HomesForYou.jsx";
+import MapView, { type MapViewHandle } from "./components/MapView.jsx";
 /* ---------------------------------------
    DEMO DATA (Fixing Wrong Paths)
 ---------------------------------------- */
@@ -144,12 +147,49 @@ const demoItems = [
   // You can add more objects here
 ];
 
+const demoItems2 = [
+  {
+    title: "Skyper Pool Apartment",
+    price: "$280,000",
+    lat: 28.6139,
+    lng: 77.209,
+  },
+  {
+    title: "Luxury City Home",
+    price: "$350,000",
+    lat: 28.7041,
+    lng: 77.1025,
+  },
+];
+
 function App() {
   const [open, setOpen] = useState(false);
   // const [mode, setMode] = useState("sale");
   const [query, setQuery] = useState("");
+  const mapRef = useRef<MapViewHandle | null>(null);
+  async function handleSearch(payload: { query: string; mode: string }) {
+    const { query } = payload;
 
-   
+    const res = await fetch(
+      `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(
+        query
+      )}.json?access_token=pk.eyJ1Ijoidml2ZWthbmFuZDI2MSIsImEiOiJjbWozdGVwOGgxOWR4M2VzODlja2wxc3dvIn0.q8eQ_4T_oNKpC4fbQR2xuw`
+    );
+    
+    
+    const data = await res.json();
+     
+    console.log(data)
+
+    if (!data.features.length) {
+      alert("Location not found");
+      return;
+    }
+
+    const [lng, lat] = data.features[0].center;
+
+    mapRef.current?.flyToLocation(lng, lat);
+  }
 
   return (
     <>
@@ -174,12 +214,24 @@ function App() {
 
         <div className={`nav__middle ${open ? "open" : ""}`}>
           <ul className="nav__list">
-            <li><a href="/">Home</a></li>
-            <li><a href="/listings">Listings</a></li>
-            <li><a href="/members">Members</a></li>
-            <li><a href="/blog">Blog</a></li>
-            <li><a href="/pages">Pages</a></li>
-            <li><a href="/contact">Contact</a></li>
+            <li>
+              <a href="/">Home</a>
+            </li>
+            <li>
+              <a href="/listings">Listings</a>
+            </li>
+            <li>
+              <a href="/members">Members</a>
+            </li>
+            <li>
+              <a href="/blog">Blog</a>
+            </li>
+            <li>
+              <a href="/pages">Pages</a>
+            </li>
+            <li>
+              <a href="/contact">Contact</a>
+            </li>
           </ul>
         </div>
 
@@ -200,7 +252,7 @@ function App() {
       </nav>
 
       {/* ---------------- HERO SECTION ---------------- */}
-      <section className="hero">
+      {/* <section className="hero">
         <div className="hero__overlay" />
         <div className="hero__center">
           <p className="hero__kicker">LET US GUIDE YOUR HOME</p>
@@ -232,7 +284,7 @@ function App() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               className="hero__input"
-              placeholder="Enter your city, neighborhood or keywords"
+              placeholder="Enter your city, neighbor or keywords"
             />
 
             <button type="submit" className="hero__search-btn">
@@ -240,7 +292,19 @@ function App() {
             </button>
           </form>
         </div>
-      </section>
+      </section> */}
+      <Hero onSearch={handleSearch} />
+      {/* ---------------- MAP SECTION ---------------- */}
+      {/* <MapView properties={demoItems2} /> */}
+      <MapView
+        ref={mapRef}
+        properties={demoItems.map((item) => ({
+          title: item.title,
+          price: item.price,
+          lat: 28.6139, // demo coords (replace later)
+          lng: 77.209,
+        }))}
+      />
 
       {/* ---------------- HOMES FOR YOU SECTION ---------------- */}
       <HomesForYou items={demoItems} />
@@ -250,22 +314,14 @@ function App() {
 
 export default App;
 
-
-
-
-
-
-
-
-
 // import { useState } from "react";
 // import logo from "./assets/images/logo.png";
 // import phoneLogo from "./assets/images/phonelogo.png";
 // import profileLogo from "./assets/images/profileLogo.png";
-// import searchlogo from "./assets/images/searchlogo.png"; 
+// import searchlogo from "./assets/images/searchlogo.png";
 // import maplogoimage from "./assets/images/maplogo.png"
 // import bedlogo from "./assets/images/bedlogo.png"
-// import bathlogo from "./assets/images/bathlogo.png" 
+// import bathlogo from "./assets/images/bathlogo.png"
 // import sqftlogo from "./assets/images/sqftlogo.png"
 // import bgimageUrl from "./assets/images/bgimage.png"
 // import HomesForYou from "./HomesForYou";
@@ -286,7 +342,6 @@ export default App;
 //   },
 //   // ...more items
 // ];
-
 
 // import "./App.css";
 
@@ -415,7 +470,7 @@ export default App;
 //             role="search"
 //             aria-label="Property search"
 //           >
-             
+
 //             <input
 //               id="heroSearch"
 //               type="text"

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import searchlogo from "../assets/images/searchlogo.png"; // place your icon here
 import "./Hero.css";
 
+
+
 export default function Hero({ onSearch }) {
   const [mode, setMode] = useState("sale"); // 'sale' or 'rent'
   const [query, setQuery] = useState("");
@@ -45,20 +47,17 @@ export default function Hero({ onSearch }) {
           </div>
         </div>
 
-        <form className="hero__search" onSubmit={submit} role="search" aria-label="Property search">
-          <label htmlFor="heroSearch" className="sr-only">Search properties by location, keyword or id</label>
+        <form className="hero__search" onSubmit={submit}>
           <input
-            id="heroSearch"
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             className="hero__input"
-            placeholder="Enter your city, neighborhood or keywords"
-            aria-label="Search"
-            autoComplete="off"
+            placeholder="Enter city, area or landmark"
           />
-          <button type="submit" className="hero__search-btn" aria-label="Search">
-            <img src={searchlogo} alt="" width="20" height="20" aria-hidden="true" />
+
+          <button type="submit" className="hero__search-btn">
+            <img src={searchlogo} alt="" width="20" />
           </button>
         </form>
       </div>
